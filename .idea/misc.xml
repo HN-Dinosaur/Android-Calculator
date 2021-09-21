@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/conversion_of_number_systems.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/math_function.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/transform.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/unit_conversion.xml" value="0.125" />
+        <entry key="app/src/main/res/menu/conversion_menu.xml" value="0.25555555555555554" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/menu/math_menu.xml" value="0.25555555555555554" />
+        <entry key="app/src/main/res/menu/unit_menu.xml" value="0.25555555555555554" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

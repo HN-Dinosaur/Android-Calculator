@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCalculator">
         <activity
+            android:name=".UnitConversionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ConversionOfNumberSystemsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MathFunctionActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

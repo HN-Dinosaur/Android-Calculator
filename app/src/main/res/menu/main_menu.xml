@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:title="单位换算"
+        android:id="@+id/unit_conversion"
+        app:showAsAction="never"/>
+    <item
+        android:title="进制转换"
+        android:id="@+id/conversion_of_number_systems"
+        app:showAsAction="never"/>
+    <item
+        android:title="数学函数"
+        android:id="@+id/math_function"
+        app:showAsAction="never"/>
+
+</menu>
