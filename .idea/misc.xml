@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24362826019540934" />
         <entry key="app/src/main/res/layout/conversion_of_number_systems.xml" value="0.125" />
         <entry key="app/src/main/res/layout/math_function.xml" value="0.125" />
         <entry key="app/src/main/res/layout/transform.xml" value="0.125" />
