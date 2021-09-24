@@ -22,11 +22,8 @@ public class Calculator {
     }
     //按数字按钮
     public static String addNum(String displayText,String addNum){
-        if(isComplicated){
+        if(isComplicated || isOperator){
             isComplicated = false;
-            return addNum;
-        }
-        if(isOperator){
             isOperator = false;
             return addNum;
         }
@@ -150,7 +147,6 @@ public class Calculator {
     }
     //除法
     public static Double divide(){
-
         return calculatorNum1 / calculatorNum2;
     }
     //乘法
