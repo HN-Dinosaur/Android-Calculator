@@ -109,14 +109,12 @@ public class Calculator {
         String temp = display.replace(",","");
 
         calculatorNum1 = Double.parseDouble(temp);
-        System.out.println("num1: " + calculatorNum1);
         isOperator = true;
     }
     //set num2
     public static void setCalculatorNum2(String display){
         String temp = display.replace(",","");
         calculatorNum2 = Double.parseDouble(temp);
-        System.out.println("num2: " + calculatorNum2);
     }
     //set Sign
     public static void setOperatorSign(String sign){
