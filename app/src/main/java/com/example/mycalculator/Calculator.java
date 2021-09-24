@@ -23,7 +23,6 @@ public class Calculator {
     //按数字按钮
     public static String addNum(String displayText,String addNum){
         if(isComplicated){
-            swap();
             isComplicated = false;
             return addNum;
         }
@@ -105,15 +104,19 @@ public class Calculator {
     }
     //set num1
     public static void setCalculatorNum1(String display){
+
         //去掉所有的,
         String temp = display.replace(",","");
+
         calculatorNum1 = Double.parseDouble(temp);
+        System.out.println("num1: " + calculatorNum1);
         isOperator = true;
     }
     //set num2
     public static void setCalculatorNum2(String display){
         String temp = display.replace(",","");
         calculatorNum2 = Double.parseDouble(temp);
+        System.out.println("num2: " + calculatorNum2);
     }
     //set Sign
     public static void setOperatorSign(String sign){
@@ -141,7 +144,6 @@ public class Calculator {
     }
     //得到num1
     public static Double getCalculatorNum1(){
-
         return calculatorNum1;
     }
     //得到num2
@@ -150,14 +152,17 @@ public class Calculator {
     }
     //除法
     public static Double divide(){
+
         return calculatorNum1 / calculatorNum2;
     }
     //乘法
     public static Double multiply(){
+
         return calculatorNum1 * calculatorNum2;
     }
     //减法
     public static Double sub(){
+
         return calculatorNum1 - calculatorNum2;
     }
     //加法
