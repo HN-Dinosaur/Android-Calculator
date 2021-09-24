@@ -3,6 +3,7 @@ package com.example.mycalculator;
 public class Calculator {
     public static Double calculatorNum1 = 0.0;
     public static Double calculatorNum2 = 0.0;
+    public static boolean clickOnceEqual = false;
     public static boolean isOperator = false;
     public static boolean isComplicated = false;
     public static String operatorSign = null;
@@ -147,20 +148,31 @@ public class Calculator {
     }
     //除法
     public static Double divide(){
+        if(clickOnceEqual){
+            swap();
+        }
         return calculatorNum1 / calculatorNum2;
     }
     //乘法
     public static Double multiply(){
+        if(clickOnceEqual){
+            swap();
+        }
 
         return calculatorNum1 * calculatorNum2;
     }
     //减法
     public static Double sub(){
-
+        if(clickOnceEqual){
+            swap();
+        }
         return calculatorNum1 - calculatorNum2;
     }
     //加法
     public static Double add(){
+        if(clickOnceEqual){
+            swap();
+        }
         return calculatorNum1 + calculatorNum2;
     }
     //处理结果

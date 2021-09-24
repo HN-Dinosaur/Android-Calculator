@@ -91,18 +91,22 @@ public class MainActivity extends AppCompatActivity {
         //除法
         if(tag.equals("1")){
             Calculator.setCalculatorNum1(display);
+            Calculator.clickOnceEqual = true;
             Calculator.setOperatorSign("/");
             //乘法
         }else if(tag.equals("2")){
             Calculator.setCalculatorNum1(display);
+            Calculator.clickOnceEqual = true;
             Calculator.setOperatorSign("*");
             //减法
         }else if(tag.equals("3")){
             Calculator.setCalculatorNum1(display);
+            Calculator.clickOnceEqual = true;
             Calculator.setOperatorSign("-");
             //加法
         }else if(tag.equals("4")){
             Calculator.setCalculatorNum1(display);
+            Calculator.clickOnceEqual = true;
             Calculator.setOperatorSign("+");
             //等于
         }else{
@@ -120,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
             }
             displayText.setText(Calculator.processResult(result));
             Calculator.setIsComplicated(true);
+            Calculator.clickOnceEqual = false;
         }
     }
 
