@@ -1,4 +1,4 @@
-package com.example.mycalculator;
+package com.example.mycalculator.Model;
 
 public class Calculator {
     public static Double calculatorNum1 = 0.0;

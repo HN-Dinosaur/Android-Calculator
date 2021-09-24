@@ -1,4 +1,6 @@
-package com.example.mycalculator;
+package com.example.mycalculator.Model;
+
+import com.example.mycalculator.Model.Calculator;
 
 public class MathFunction {
     public static int operatorNum = 0;

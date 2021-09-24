@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.mycalculator.Model.Calculator;
+
 public class MainActivity extends AppCompatActivity {
 
     String text = null;
