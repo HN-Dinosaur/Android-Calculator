@@ -148,32 +148,36 @@ public class Calculator {
     }
     //除法
     public static Double divide(){
+        Double result = calculatorNum1 / calculatorNum2;
         if(clickOnceEqual){
             swap();
         }
-        return calculatorNum1 / calculatorNum2;
+        return result;
     }
     //乘法
     public static Double multiply(){
+        Double result = calculatorNum1 * calculatorNum2;
         if(clickOnceEqual){
             swap();
         }
 
-        return calculatorNum1 * calculatorNum2;
+        return result;
     }
     //减法
     public static Double sub(){
+        Double result = calculatorNum1 - calculatorNum2;
         if(clickOnceEqual){
             swap();
         }
-        return calculatorNum1 - calculatorNum2;
+        return result;
     }
     //加法
     public static Double add(){
+        Double result = calculatorNum1 + calculatorNum2;
         if(clickOnceEqual){
             swap();
         }
-        return calculatorNum1 + calculatorNum2;
+        return result;
     }
     //处理结果
     public static String processResult(Double result){
