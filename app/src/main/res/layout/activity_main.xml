@@ -2,12 +2,15 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:columnCount="4"
     android:orientation="horizontal"
-    android:rowCount="6"
+    android:rowCount="7"
+    android:layout_marginLeft="3.5dp"
     tools:context=".MainActivity">
+
+
 
 
     <TextView
@@ -20,18 +23,59 @@
         tools:ignore="RtlCompat" />
 
     <Button
+        android:id="@+id/leftBracket"
+        android:layout_width="96dp"
+        android:layout_height="88dp"
+        android:onClick="handleClickSuperTop"
+        android:text="("
+        android:tag="1"
+        android:textSize="26sp"
+        tools:ignore="OnClick"
+        />
+    <Button
+        android:id="@+id/rightBracket"
+        android:layout_width="96dp"
+        android:layout_height="88dp"
+        android:onClick="handleClickSuperTop"
+        android:text=")"
+        android:tag="2"
+        android:textSize="26sp"
+        tools:ignore="OnClick"
+        />
+    <Button
+        android:id="@+id/sqrt"
+        android:layout_width="96dp"
+        android:layout_height="88dp"
+        android:onClick="handleClickSuperTop"
+        android:text="√"
+        android:tag="3"
+        android:textSize="26sp"
+        tools:ignore="OnClick"
+        />
+    <Button
+        android:id="@+id/square"
+        android:layout_width="96dp"
+        android:layout_height="88dp"
+        android:onClick="handleClickSuperTop"
+        android:text="X^2"
+        android:tag="4"
+        android:textSize="26sp"
+        tools:ignore="OnClick"
+        />
+
+
+    <Button
         android:id="@+id/toZero"
         android:layout_width="96dp"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:onClick="handleClickTop"
         android:text="AC"
         android:tag="1"
-        android:textColor="#455A64"
         android:textSize="26sp"
         tools:ignore="OnClick" />
 
     <Button
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:id="@+id/negation"
         android:text="-/+"
@@ -41,7 +85,7 @@
         tools:ignore="OnClick" />
 
     <Button
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:id="@+id/percent"
         android:text="%"
@@ -51,7 +95,7 @@
         tools:ignore="OnClick" />
 
     <Button
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:id="@+id/divide"
         android:text="/"
@@ -62,7 +106,7 @@
 
     <Button
         android:id="@+id/seven"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:text="7"
         android:tag="7"
@@ -71,7 +115,7 @@
         tools:ignore="OnClick" />
 
     <Button
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:id="@+id/eight"
         android:text="8"
@@ -81,7 +125,7 @@
         tools:ignore="OnClick"/>
 
     <Button
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:id="@+id/nine"
         android:text="9"
@@ -91,7 +135,7 @@
         tools:ignore="OnClick"/>
 
     <Button
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:id="@+id/multiple"
         android:text="*"
@@ -102,7 +146,7 @@
 
     <Button
         android:id="@+id/four"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:text="4"
         android:tag="4"
@@ -114,7 +158,7 @@
         android:id="@+id/five"
         android:text="5"
         android:tag="5"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:textSize="26sp"
         android:onClick="handleClickNum"
@@ -124,7 +168,7 @@
         android:id="@+id/six"
         android:text="6"
         android:tag="6"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:textSize="26sp"
         android:onClick="handleClickNum"
@@ -134,7 +178,7 @@
         android:id="@+id/sub"
         android:text="-"
         android:tag="3"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:textSize="26sp"
         android:onClick="handleClickRight"
@@ -142,7 +186,7 @@
 
     <Button
         android:id="@+id/one"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:text="1"
         android:tag="1"
@@ -154,7 +198,7 @@
         android:id="@+id/two"
         android:text="2"
         android:tag="2"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:textSize="26sp"
         android:onClick="handleClickNum"
@@ -164,7 +208,7 @@
         android:id="@+id/three"
         android:text="3"
         android:tag="3"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:textSize="26sp"
         android:onClick="handleClickNum"
@@ -174,7 +218,7 @@
         android:id="@+id/add"
         android:text="+"
         android:tag="4"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:textSize="26sp"
         android:onClick="handleClickRight"
@@ -182,7 +226,7 @@
 
     <Button
         android:id="@+id/zero"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_columnSpan="2"
         android:layout_gravity="fill"
         android:text="0"
@@ -194,7 +238,7 @@
     <Button
         android:id="@+id/dot"
         android:text="."
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:textSize="26sp"
         android:onClick="handleClickDot"
@@ -204,7 +248,7 @@
         android:id="@+id/equal"
         android:text="="
         android:tag="5"
-        android:layout_height="100dp"
+        android:layout_height="88dp"
         android:layout_width="96dp"
         android:textSize="26sp"
         android:onClick="handleClickRight"
