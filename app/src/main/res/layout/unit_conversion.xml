@@ -1,22 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UnitConversionActivity">
+    tools:context=".UnitConversionActivity"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView2"
+
+    <EditText
+        android:id="@+id/inputSquare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="163dp"
-        android:layout_marginTop="331dp"
-        android:layout_marginEnd="190dp"
-        android:layout_marginBottom="381dp"
-        android:text="Unit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:width="200dp"
+        android:hint="请输入纯数字 例:30"
+        android:minHeight="48dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/unitRadioGroupSquare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioSquareCm1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="cm²" />
+            <RadioButton
+                android:id="@+id/radioSquareM1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="m²" />
+            <RadioButton
+                android:id="@+id/radioSquareKm1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="km²" />
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/unitRadioGroupSquareResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioSquareCm2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="cm²" />
+            <RadioButton
+                android:id="@+id/radioSquareM2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="m²" />
+            <RadioButton
+                android:id="@+id/radioSquareKm2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="km²" />
+        </RadioGroup>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/squareResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结果: "
+        />
+    <EditText
+        android:id="@+id/inputCubic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:hint="请输入纯数字 例:30"
+        android:minHeight="48dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/unitRadioGroupCubic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioCubicCm1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="cm³" />
+            <RadioButton
+                android:id="@+id/radioCubicDm1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="m³" />
+            <RadioButton
+                android:id="@+id/radioMl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ml" />
+            <RadioButton
+                android:id="@+id/radioL1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L" />
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/unitRadioGroupCubicResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioMl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ml" />
+            <RadioButton
+                android:id="@+id/radioL2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L" />
+            <RadioButton
+                android:id="@+id/radioCubicCm2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="cm³" />
+            <RadioButton
+                android:id="@+id/radioCubicDm2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="m³" />
+        </RadioGroup>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/cubicResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结果: " />
+
+</LinearLayout>

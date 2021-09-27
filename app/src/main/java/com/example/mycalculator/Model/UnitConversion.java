@@ -2,7 +2,12 @@ package com.example.mycalculator.Model;
 
 //单位转换
 public class UnitConversion {
-    //一维
+    public static String display = "";
+    public static String param = "";
+    public static String tagBack = "";
+    public static String tagTo = "";
+
+    //group1
     public static String cmToM(String cm){
         Double cmNum = Calculator.convertToDouble(cm);
         return String.valueOf(cmNum / 100);
@@ -27,7 +32,6 @@ public class UnitConversion {
         Double kmNum = Calculator.convertToDouble(km);
         return String.valueOf(kmNum * 100000);
     }
-    //二维
     public static String squareCmToM(String squareCm){
         Double cmNum = Calculator.convertToDouble(squareCm);
         return String.valueOf(cmNum / 10000);
