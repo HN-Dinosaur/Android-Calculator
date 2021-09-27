@@ -1,7 +1,5 @@
 package com.example.mycalculator.Model;
 
-import com.example.mycalculator.Model.Calculator;
-
 public class MathFunction {
     public static int operatorNum = 0;
     private static double calculatorNum = 0.0;
@@ -25,6 +23,7 @@ public class MathFunction {
         return Math.tan(num);
     }
     public static double processResult(String display){
+        //还原成纯数字
         processDisplayString(display);
         if(operatorNum == 1){
             return returnSin(calculatorNum);
