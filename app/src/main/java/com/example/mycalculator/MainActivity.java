@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         displayText = findViewById(R.id.displayText);
-
     }
 
     //显示菜单
@@ -54,11 +53,13 @@ public class MainActivity extends AppCompatActivity {
         switch (tag){
             //(
             case "1":
-                Calculator.addSign("(");
+                Calculator.addSign(display,"(");
+                text = display;
                 break;
             //)
             case "2":
-                Calculator.addSign(")");
+                Calculator.addSign(display,")");
+                text = display;
                 break;
             //√
             case "3":
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         //点击数字按钮
         display = String.valueOf(displayText.getText());
         tag = String.valueOf(view.getTag());
-        text = Calculator.addNum(display,tag);
+        text = Calculator.addNumInScreen(display,tag);
         displayText.setText(text);
     }
     //点击上方按钮
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             //点击AC
             case "1":
                 text = "0";
+                Calculator.clear();
                 break;
             //取反
             case "2":
@@ -111,45 +113,28 @@ public class MainActivity extends AppCompatActivity {
     public void handleClickRight(View view){
         tag = String.valueOf(view.getTag());
         display = String.valueOf(displayText.getText());
-        Double result = null;
         //辅助连续按等号功能
         switch (tag){
             //除法
             case "1":
-                Calculator.setCalculatorNum1(display);
-                Calculator.setOperatorSign("/");
-                Calculator.addSign("/");
+                Calculator.addSign(display,"/");
                 break;
                 //乘法
             case "2":
-                Calculator.setCalculatorNum1(display);
-                Calculator.setOperatorSign("*");
-                Calculator.addSign("*");
+                Calculator.addSign(display,"*");
                 break;
                 //减法
             case "3":
-                Calculator.setCalculatorNum1(display);
-                Calculator.setOperatorSign("*");
-                Calculator.addSign("-");
+                Calculator.addSign(display,"-");
                 break;
                 //加法
             case "4":
-                Calculator.setCalculatorNum1(display);
-                Calculator.setOperatorSign("*");
-                Calculator.addSign("+");
+                Calculator.addSign(display,"+");
                 break;
                 //等于
             default:
-                Calculator.setCalculatorNum2(display);
-                if(Calculator.getOperatorSign() == null){
-                    return;
-                }else{
-                    result = Calculator.calculator();
-                }
-                displayText.setText(Calculator.processResult(result));
-                Calculator.setIsComplicated(true);
-
+                Calculator.addSign(display,"=");
+                displayText.setText(Calculator.processResult(Calculator.calculator()));
         }
     }
-
 }

@@ -8,18 +8,20 @@ import java.util.regex.Pattern;
 
 public class Calculator {
     public static String expression = "";
-    public static Double calculatorNum1 = 0.0;
-    public static Double calculatorNum2 = 0.0;
-    public static Double result = 0.0;
     public static boolean isOperator = false;
+    public static String operatorSign = "";
+    public static String num1 = "";
+    public static String num2 = "";
     public static boolean isComplicated = false;
-    public static String operatorSign = null;
+    public static boolean isLeftBracket = false;
+    public static boolean clickOnceEqual = false;
+
 
     //相反数
     public static String negation(String displayText){
-        Double num = convertToDouble(displayText.replace(",",""));
+        Double num = convertToDouble(replaceDot(displayText));
         num = -num;
-        return String.valueOf(num);
+        return processResult(num);
     }
     //百分数
     public static String percent(String displayText){
@@ -27,22 +29,35 @@ public class Calculator {
         if(num == 0){
             return "0";
         }
-        return String.valueOf(num / 100);
+        return processResult(num / 100);
     }
     //按数字按钮
-    public static String addNum(String displayText,String addNum){
-        if(isComplicated || isOperator){
+    public static String addNumInScreen(String displayText,String addNum){
+
+        if(displayText.equals("0")){
+            return addNum;
+        }else if(isComplicated || isOperator){
             isComplicated = false;
             isOperator = false;
             return addNum;
-        }
-        if(displayText.equals("0")){
-            return addNum;
-        }
-        if(isLonger(displayText)){
+        }else if(isLonger(displayText)){
             return displayText;
         }
         return insertCommaWhenAddNum(displayText + addNum);
+    }
+    //添加数字在表达式里
+    public static void addNumToExpression(String display){
+        String str = replaceDot(display);
+        //当前表达式为空
+        if(expression.isEmpty()){
+            expression += str;
+            //当前表达式不为空
+        }else{
+            expression += " " + str;
+        }
+    }
+    public static String replaceDot(String display){
+        return display.replace(",","");
     }
     //添加小数点
     public static String addDot(String displayText){
@@ -52,7 +67,6 @@ public class Calculator {
             return displayText;
         }
         if(isComplicated){
-            swap();
             isComplicated = false;
             return "0.";
         }
@@ -65,7 +79,7 @@ public class Calculator {
 
     //添加整数逗号
     public static String addIntComma(String display){
-        String deleteDotStr = display.replace(".","");
+        String deleteDotStr = replaceDot(display);
         //先反转
         String reverse = reverseStr(deleteDotStr);
         //再间隔成数组
@@ -85,7 +99,7 @@ public class Calculator {
     }
     //添加双精度浮点数的逗号
     public static String addDoubleComma(String display){
-        String deleteDotStr = display.replace(",","");
+        String deleteDotStr = replaceDot(display);
         String[] splitStr = deleteDotStr.split("\\.");
         String intStr = addIntComma(splitStr[0]);
         String doubleStr = splitStr[1];
@@ -103,28 +117,15 @@ public class Calculator {
     public static String reverseStr(String str){
         return new StringBuffer(str).reverse().toString();
     }
-    //set num1
-    public static void setCalculatorNum1(String display){
-        //去掉所有的,
-        String temp = display.replace(",","");
-        calculatorNum1 = Double.parseDouble(temp);
-        isOperator = true;
-        if(expression.isEmpty()){
-            expression = String.valueOf(calculatorNum1);
-        }else{
-            expression += " " + calculatorNum1;
-        }
+
+
+    public static void setNum1(String num){
+        num1 = replaceDot(num);
     }
-    //set num2
-    public static void setCalculatorNum2(String display){
-        String temp = display.replace(",","");
-        calculatorNum2 = Double.parseDouble(temp);
-        expression += " " + calculatorNum2;
+    public static void setNum2(String num){
+        num2 = replaceDot(num);
     }
-    //set Sign
-    public static void setOperatorSign(String sign){
-        operatorSign = sign;
-    }
+
     //set isOperator
     public static void setIsOperator(boolean isOperatorParam){
         isOperator = isOperatorParam;
@@ -132,10 +133,6 @@ public class Calculator {
     //set isComplicated
     public static void setIsComplicated(boolean isComplicatedParam){
         isComplicated = isComplicatedParam;
-    }
-    //得到sign
-    public static String getOperatorSign(){
-        return operatorSign;
     }
     //得到isOperator
     public static Boolean getIsOperator(){
@@ -145,26 +142,18 @@ public class Calculator {
     public static Boolean getIsComplicated(){
         return isComplicated;
     }
-    //得到num1
-    public static Double getCalculatorNum1(){
-        return calculatorNum1;
-    }
-    //得到num2
-    public static Double getCalculatorNum2(){
-        return calculatorNum2;
-    }
 
     public static double calculator(){
-        result = getResult(infixToSuffix(expression));
-        return result;
+        isComplicated = true;
+        if(!clickOnceEqual){
+            clickOnceEqual = true;
+            return getResult(infixToSuffix(expression));
+        }else {
+            return getResult(infixToSuffix(num1 + " " + operatorSign + " " + num2));
+        }
+
     }
 
-    //交换两个数
-    public static void swap(){
-        double temp = calculatorNum1;
-        calculatorNum1 = calculatorNum2;
-        calculatorNum2 = temp;
-    }
 
     //处理结果
     public static String processResult(Double result){
@@ -174,70 +163,135 @@ public class Calculator {
             return addDoubleComma(String.valueOf(result));
         }
     }
+    //在添加数字时添加逗号
     public static String insertCommaWhenAddNum(String display){
-        String deleteDotStr = display.replace(",","");
+        String deleteDotStr = replaceDot(display);
         if(isCanToInt(convertToDouble(deleteDotStr))){
             return addIntComma(deleteDotStr);
         }else{
             return addDoubleComma(deleteDotStr);
         }
     }
+    //长度是否超过
     public static boolean isLonger(String display){
         if(display.length() > 12){
             return true;
         }
         return false;
     }
+    //平方
     public static String square(String display){
-        Double num = convertToDouble(display);
-        return String.valueOf(num * num);
+        String str = replaceDot(display);
+        Double num = convertToDouble(str);
+        return processResult(num * num);
 
     }
-    public static void addSign(String sign){
-        if(expression.isEmpty()){
-            expression += sign;
-        }else{
+
+    public static void addSign(String display, String sign){
+
+        //当点击等于号时
+        if(sign.equals("=")){
+            setNum2(display);
+            if(!isRightBracketAndOperator()){
+                addNumToExpression(display);
+            }
+            //左括号 且没有左括号的时候
+        }else if(sign.equals("(") && !isLeftBracket){
+            if(expression.isEmpty()){
+                expression += sign;
+            }else{
+                if(!isOperatorAndLeftBracket()){
+                    addNumToExpression(display);
+                }
+                expression += " " + sign;
+            }
+            isLeftBracket = true;
+            isOperator = true;
+            //右括号 且有左括号的时候
+        }else if(sign.equals(")") && isLeftBracket) {
+            addNumToExpression(display);
+            expression += " " + sign;
+            isLeftBracket = false;
+            isOperator = true;
+            //四则运算
+        } else if(isOperatorSign(sign)){
+            //右括号 + 符号
+            if(!isRightBracketAndOperator()){
+                addNumToExpression(display);
+            }
             String[] strArray = expression.split(" ");
             String last = strArray[strArray.length - 1];
-            if(!isSign(last)){
+            if(!isSameCategorySign(last, sign)){
+                setNum1(display);
+                operatorSign = sign;
+                //如果不是相同类的符号
                 expression += " " + sign;
+                isOperator = true;
+                clickOnceEqual = false;
             }
         }
     }
-    public static String sqrt(String display){
-        Double num = convertToDouble(display);
-        return String.valueOf(Math.sqrt(num));
+    public static boolean isRightBracketAndOperator(){
+        String[] strArray = expression.split(" ");
+        String str = strArray[strArray.length - 1];
+        return str.equals(")");
     }
+    public static boolean isOperatorAndLeftBracket(){
+        String[] strArray = expression.split(" ");
+        String str = strArray[strArray.length - 1];
+        return isOperatorSign(str);
+    }
+    //
+    public static String sqrt(String display){
+        String str = replaceDot(display);
+        Double num = convertToDouble(str);
+        return processResult(Math.sqrt(num));
+    }
+    public static void clear(){
+        expression = "";
+        isOperator = false;
+        isComplicated = false;
+    }
+    //判断表达式
+    public static boolean isValidExpression(){
+        String[] strArray = expression.split(" ");
+        //如果表达式最后一个值是符号 则返回false
+        if(isOperatorSign(strArray[strArray.length - 1])){
+            return false;
+        }
+        return true;
+    }
+
 
 
 
     /**
      * 计算后缀表达式
-     * @param inputString 9 3 1 - 3 * + 10 2 / + 以空格分隔
+     * @param suffix 9 3 1 - 3 * + 10 2 / + 以空格分隔
      */
-    public static double getResult(String inputString){
-        String[] input = inputString.split(" ");
+    public static double getResult(String suffix){
+        String[] strArray = suffix.split(" ");
 
         Stack<Double> stack = new Stack<>();
-        for (int i = 0; i < input.length; i++) {
-            String s = input[i];
-            if (isNumber(s))  //如果是数字，则入栈
-                stack.push(Double.parseDouble(s));
+        for (int i = 0; i < strArray.length; i++) {
+            String str = strArray[i];
+            if (isNumber(str))  //如果是数字，则入栈
+                stack.push(Double.parseDouble(str));
             else {
                 //遇到运算符，则从栈中弹出两个数字，进行运算
-                double n1 = stack.pop();
-                double n2 = stack.pop();
+                double num1 = stack.pop();
+                double num2 = stack.pop();
                 double res = 0;
-                switch (s){
-                    case "+":res = n1 + n2;break;
-                    case "-":res = n2 - n1;break;
-                    case "*":res = n1 * n2;break;
-                    case "/":res = n2 / n1;break;
+                switch (str){
+                    case "+":res = num1 + num2;break;
+                    case "-":res = num2 - num1;break;
+                    case "*":res = num1 * num2;break;
+                    case "/":res = num2 / num1;break;
                 }
                 stack.push(res);
             }
         }
-
+        expression = "";
         return stack.pop();
     }
 
@@ -251,10 +305,10 @@ public class Calculator {
      */
     public static String infixToSuffix(String string){
         Stack<String> stack = new Stack();
-        String[] chars = string.split(" ");
+        String[] strArray = string.split(" ");
         String res = "";
-        for (int i = 0; i < chars.length; i++) {
-            String s = String.valueOf(chars[i]);
+        for (int i = 0; i < strArray.length; i++) {
+            String s = strArray[i];
             if (isNumber(s)){
                 if (res.length()==0)
                     res += s;
@@ -293,10 +347,7 @@ public class Calculator {
                         stack.push(s);
                     }
                 }
-
-
             }
-
         }
 
         while (!stack.empty()){
@@ -319,22 +370,37 @@ public class Calculator {
 
         return map.get(s);
     }
+    //判断是否出现相同的符号
+    public static boolean isSameCategorySign(String sign1, String sign2){
+        if(isOperatorSign(sign1) && isOperatorSign(sign2)){
+            return true;
+        }else if(isBracketSign(sign1) && isBracketSign(sign2)){
+            return true;
+        }
+        return false;
+    }
 
-    public static boolean isSign(String c){
-        Pattern pattern = Pattern.compile("^[*|\\|+|-|(|)]$");
-        Matcher matcher = pattern.matcher(c);
+    //是否是运算符
+    public static boolean isOperatorSign(String str){
+        Pattern pattern = Pattern.compile("^[*|\\|+|-]$");
+        Matcher matcher = pattern.matcher(str);
         return matcher.find();
     }
 
-    public static boolean isNumber(String c){
+    //是否是括号
+    public static boolean isBracketSign(String str){
+        Pattern pattern = Pattern.compile("^[(|)]$");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.find();
+    }
+    //是否是小数或者整数
+    public static boolean isNumber(String str){
         //匹配整数
         Pattern pattern1 = Pattern.compile("^(0|[1-9][0-9]*)$");
         //匹配小数
         Pattern pattern2 = Pattern.compile("^([0-9]{1,}[.][0-9]*)$");
-        Matcher matcher1 = pattern1.matcher(c);
-        Matcher matcher2 = pattern2.matcher(c);
+        Matcher matcher1 = pattern1.matcher(str);
+        Matcher matcher2 = pattern2.matcher(str);
         return matcher1.find() || matcher2.find();
     }
-
-
 }
