@@ -29,7 +29,6 @@
                 android:id="@+id/radioSquareCm1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="cm²" />
             <RadioButton
                 android:id="@+id/radioSquareM1"
@@ -55,7 +54,6 @@
                 android:id="@+id/radioSquareCm2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="cm²" />
             <RadioButton
                 android:id="@+id/radioSquareM2"
@@ -94,7 +92,6 @@
                 android:id="@+id/radioCubicCm1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="cm³" />
             <RadioButton
                 android:id="@+id/radioCubicDm1"
@@ -126,7 +123,6 @@
                 android:id="@+id/radioCubicCm2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="cm³" />
             <RadioButton
                 android:id="@+id/radioCubicDm2"
