@@ -349,7 +349,7 @@ public class Calculator {
                                 flag = true;
                             }
                         }
-                        //如果temp为空即stack为空且1.没进while 2. 里边的优先级小于后边的 比如+ * 否则进入if
+                        //如果temp不为空即stack为空且1.没进while 2. 里边的优先级小于后边的 比如+ * 否则进入if
                         if (!temp.equals("") && !flag)
                             stack.push(temp);
                         stack.push(str);
@@ -390,7 +390,7 @@ public class Calculator {
 
     //是否是运算符
     public static boolean isOperatorSign(String str){
-        Pattern pattern = Pattern.compile("^[*|\\|+|-]$");
+        Pattern pattern = Pattern.compile("^[*|/|+|-]$");
         Matcher matcher = pattern.matcher(str);
         return matcher.find();
     }
