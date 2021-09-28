@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mycalculator.Model.Calculator;
 
@@ -134,7 +135,17 @@ public class MainActivity extends AppCompatActivity {
                 //等于
             default:
                 Calculator.addSign(display,"=");
-                displayText.setText(Calculator.processResult(Calculator.calculator()));
+                try{
+                    if(Calculator.isValidExpression()){
+                        displayText.setText(Calculator.processResult(Calculator.calculator())); 
+                    }else{
+                        Toast.makeText(MainActivity.this, "括号未闭合", Toast.LENGTH_SHORT).show();
+                    }
+                    
+                }catch (Exception e){
+                    Toast.makeText(MainActivity.this, "输入有误", Toast.LENGTH_SHORT).show();
+                }
+      
         }
     }
 }

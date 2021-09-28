@@ -254,12 +254,18 @@ public class Calculator {
     }
     //判断表达式
     public static boolean isValidExpression(){
+        //只有一个左括号的情况   自动添加右括号在末尾
         String[] strArray = expression.split(" ");
-        //如果表达式最后一个值是符号 则返回false
-        if(isOperatorSign(strArray[strArray.length - 1])){
-            return false;
+        boolean isCorrect= true;
+        //遍历一遍  判断括号是否闭合
+        for(int i = 0; i < strArray.length; i++){
+            if(strArray[i].equals("(")){
+                isCorrect = false;
+            }else if(strArray[i].equals(")")){
+                isCorrect = true;
+            }
         }
-        return true;
+        return isCorrect;
     }
 
 
