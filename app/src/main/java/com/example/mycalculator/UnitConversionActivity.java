@@ -8,13 +8,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mycalculator.Model.UnitConversion;
-
-import java.math.BigDecimal;
 
 public class UnitConversionActivity extends AppCompatActivity {
 
@@ -24,7 +22,7 @@ public class UnitConversionActivity extends AppCompatActivity {
     TextView cubicResult;
 
     RadioGroup radioSquare, radioSquareResult, radioCubic, radioCubicResult;
-    BigDecimal squareTempResult, cubicTempResult;
+
 
     Intent intent = null;
     @Override
@@ -43,63 +41,51 @@ public class UnitConversionActivity extends AppCompatActivity {
         radioSquare = findViewById(R.id.unitRadioGroupSquare);
         radioSquareResult = findViewById(R.id.unitRadioGroupSquareResult);
         radioCubic = findViewById(R.id.unitRadioGroupCubic);
-        radioCubicResult = findViewById(R.id.unitRadioGroupSquareResult);
+        radioCubicResult = findViewById(R.id.unitRadioGroupCubicResult);
 
         radioSquare.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
-                BigDecimal input = new BigDecimal(inputSquare.getText().toString());
-                switch (id){
-                    case R.id.radioSquareCm1:
-                        squareTempResult = input.multiply(new BigDecimal("0.001"));
-                        break;
-                    case R.id.radioSquareM1:
-                        squareTempResult = input;
-                        break;
-                    case R.id.radioSquareKm1:
-                        squareTempResult = input.multiply(new BigDecimal("10000"));
-                        break;
+                try{
+                    String input = inputSquare.getText().toString();
+                    UnitConversion.solveSquareInput(id,input);
+                }catch (Exception e){
+                    Toast.makeText(UnitConversionActivity.this, "请输入再点击", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         radioSquareResult.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
-                BigDecimal squareNumResult = null;
-                switch (id){
-                    case R.id.radioSquareCm2:
-                        squareNumResult = squareTempResult.multiply(new BigDecimal("1000"));
-                        break;
-                    case R.id.radioSquareM2:
-                        squareNumResult = squareTempResult;
-                        return;
-                    case R.id.radioSquareKm2:
-                        squareNumResult = squareTempResult.multiply(new BigDecimal("0.0001"));
+                try{
+                    String text = UnitConversion.solveSquareResult(id);
+                    squareResult.setText("结果：" + text);
+                }catch (Exception e){
+                    Toast.makeText(UnitConversionActivity.this, "请输入后再点击", Toast.LENGTH_SHORT).show();
                 }
-                squareResult.setText(squareNumResult.toString());
+
             }
         });
         radioCubic.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
-                BigDecimal input = new BigDecimal(inputCubic.getText().toString());
-                if (id == R.id.radioCubicCm1 || id == R.id.radioMl1){
-                    cubicTempResult = input.multiply(new BigDecimal("0.001"));
-                }else{
-                    cubicTempResult = input;
+                try{
+                    String input = inputCubic.getText().toString();
+                    UnitConversion.solveCubicInput(id, input);
+                }catch (Exception e) {
+                    Toast.makeText(UnitConversionActivity.this, "请输入再点击", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         radioCubicResult.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
-                BigDecimal cubicNumResult = null;
-                if(id == R.id.radioMl2 || id == R.id.radioCubicCm2){
-                    cubicNumResult = cubicTempResult.multiply(new BigDecimal("1000"));
-                }else{
-                    cubicNumResult = cubicTempResult;
+                try{
+                    String text = UnitConversion.solveCubicResult(id);
+                    cubicResult.setText("结果：" + text);
+                }catch (Exception e){
+                    Toast.makeText(UnitConversionActivity.this, "请输入后再点击", Toast.LENGTH_SHORT).show();
                 }
-                cubicResult.setText(cubicNumResult.toString());
             }
         });
     }

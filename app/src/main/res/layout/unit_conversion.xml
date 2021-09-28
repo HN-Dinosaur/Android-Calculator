@@ -123,16 +123,6 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radioMl2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ml" />
-            <RadioButton
-                android:id="@+id/radioL2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="L" />
-            <RadioButton
                 android:id="@+id/radioCubicCm2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -143,6 +133,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="m³" />
+            <RadioButton
+                android:id="@+id/radioMl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ml" />
+            <RadioButton
+                android:id="@+id/radioL2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L" />
+
         </RadioGroup>
     </LinearLayout>
     <TextView
