@@ -314,43 +314,45 @@ public class Calculator {
         String[] strArray = string.split(" ");
         String res = "";
         for (int i = 0; i < strArray.length; i++) {
-            String s = strArray[i];
-            if (isNumber(s)){
+            String str = strArray[i];
+
+            //是数字直接加在字符串上
+            if (isNumber(str)){
                 if (res.length()==0)
-                    res += s;
+                    res += str;
                 else
-                    res += " "+s;
+                    res += " " + str;
+            //是符号的话
             }else {
-                if (s.equals("(")){
-                    stack.push(s);
+                if (str.equals("(")){
+                    stack.push(str);
                 }else {
-                    if (s.equals(")")){
-                        String t = "";
-                        String s1 = "";
-                        while (!(t = stack.pop()).equals("(")){
-                            s1 += " "+t;
+                    if (str.equals(")")){
+                        String sign = "";
+                        String temp = "";
+                        while (!(sign = stack.pop()).equals("(")){
+                            temp += " " + sign;
                         }
-                        res += s1;
+                        res += temp;
                     }else {
-                        int priority = getPriority(s);
-                        String s1 = "";
+                        int priority = getPriority(str);
+                        String temp = "";
                         boolean flag = false;
                         while (!stack.empty()){
                             flag = false;
-                            s1 = stack.pop();
-                            if (s1.equals("(")){
-//                                stack.push("(");
+                            temp = stack.pop();
+                            if (temp.equals("(")){
                                 break;
                             }
-
-                            if (getPriority(s1) >= priority){
-                                res += " " + s1;
+                            if (getPriority(temp) >= priority){
+                                res += " " + temp;
                                 flag = true;
                             }
                         }
-                        if (!s1.equals("") && !flag)
-                            stack.push(s1);
-                        stack.push(s);
+                        //如果temp为空即stack为空且1.没进while 2. 里边的优先级小于后边的 比如+ * 否则进入if
+                        if (!temp.equals("") && !flag)
+                            stack.push(temp);
+                        stack.push(str);
                     }
                 }
             }
